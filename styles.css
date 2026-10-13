@@ -1,0 +1,286 @@
+:root {
+  --purple: #6d28d9;
+  --orange: #ff7a1a;
+  --ink: #1a0b2e;
+  --bg: #fff3e2;
+  --card: #ffffff;
+  --text: #1a0b2e;
+  --muted: #5b4a75;
+  --outline: #1a0b2e;
+  --blob-opacity: 1;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #150726;
+    --card: #26114a;
+    --text: #fff3e2;
+    --muted: #cbb9ee;
+    --outline: #fff3e2;
+    --blob-opacity: 0.55;
+    color-scheme: dark;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 3rem 1.25rem 2rem;
+  background: var(--bg);
+  color: var(--text);
+  font-family: ui-rounded, "SF Pro Rounded", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Background shapes */
+.blob {
+  position: fixed;
+  z-index: 0;
+  border-radius: 50%;
+  opacity: var(--blob-opacity);
+  pointer-events: none;
+}
+
+.blob-orange {
+  width: 26rem;
+  height: 26rem;
+  top: -9rem;
+  right: -8rem;
+  background: var(--orange);
+}
+
+.blob-purple {
+  width: 22rem;
+  height: 22rem;
+  bottom: -9rem;
+  left: -7rem;
+  background: var(--purple);
+  border-radius: 42% 58% 63% 37% / 45% 40% 60% 55%;
+}
+
+/* Card */
+.card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 56rem;
+  display: grid;
+  grid-template-columns: minmax(0, 17rem) minmax(0, 1fr);
+  gap: 2.75rem;
+  align-items: center;
+  padding: 2.75rem;
+  background: var(--card);
+  border: 4px solid var(--outline);
+  border-radius: 2rem;
+  box-shadow: 12px 12px 0 var(--purple);
+}
+
+/* Photo */
+.photo {
+  position: relative;
+  transform: rotate(-3deg);
+}
+
+.frame {
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  border: 4px solid var(--outline);
+  border-radius: 1.5rem;
+  box-shadow: 10px 10px 0 var(--orange);
+}
+
+/* Zoomed in on the face; the full photo is mostly night sky */
+.frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 78%;
+  transform: scale(1.5);
+  transform-origin: 42% 68%;
+}
+
+.sticker {
+  position: absolute;
+  right: -1rem;
+  bottom: -1rem;
+  padding: 0.35rem 0.9rem;
+  background: var(--purple);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  border: 3px solid var(--outline);
+  border-radius: 999px;
+  transform: rotate(8deg);
+  white-space: nowrap;
+}
+
+/* Text */
+.hello {
+  display: inline-block;
+  margin: 0 0 0.75rem;
+  padding: 0.2rem 0.9rem;
+  background: var(--orange);
+  color: var(--ink);
+  font-weight: 800;
+  border: 3px solid var(--outline);
+  border-radius: 999px;
+  transform: rotate(-2deg);
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.75rem, 7vw, 4.5rem);
+  font-weight: 900;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+}
+
+.highlight {
+  display: inline-block;
+  padding: 0 0.2em 0.06em;
+  background: var(--purple);
+  color: #fff;
+  border-radius: 0.2em;
+  transform: rotate(-1.5deg);
+}
+
+.tagline {
+  margin: 1.1rem 0 0;
+  color: var(--orange);
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+
+@media (prefers-color-scheme: light) {
+  .tagline {
+    color: #c2500a;
+  }
+}
+
+.bio {
+  margin: 0.75rem 0 0;
+  max-width: 34rem;
+  color: var(--muted);
+}
+
+/* Links */
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.75rem;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  max-width: 100%;
+  padding: 0.7rem 1.2rem;
+  font-weight: 800;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  border: 3px solid var(--outline);
+  border-radius: 999px;
+  box-shadow: 5px 5px 0 var(--outline);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.button svg {
+  flex: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: currentColor;
+}
+
+.button-purple {
+  background: var(--purple);
+  color: #fff;
+}
+
+.button-orange {
+  background: var(--orange);
+  color: var(--ink);
+}
+
+.button:hover {
+  transform: translate(-2px, -2px) rotate(-1.5deg);
+  box-shadow: 8px 8px 0 var(--outline);
+}
+
+.button:active {
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0 var(--outline);
+}
+
+.button:focus-visible {
+  outline: 4px solid var(--orange);
+  outline-offset: 4px;
+}
+
+.button-orange:focus-visible {
+  outline-color: var(--purple);
+}
+
+footer {
+  position: relative;
+  z-index: 1;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+/* Phone */
+@media (max-width: 720px) {
+  body {
+    justify-content: flex-start;
+    padding-top: 2rem;
+  }
+
+  .card {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+    padding: 1.75rem 1.5rem 2rem;
+    box-shadow: 8px 8px 0 var(--purple);
+  }
+
+  .photo {
+    width: min(15rem, 80%);
+    margin: 0 auto;
+  }
+
+  .blob-orange {
+    width: 16rem;
+    height: 16rem;
+    top: -6rem;
+    right: -6rem;
+  }
+
+  .blob-purple {
+    width: 14rem;
+    height: 14rem;
+    bottom: -6rem;
+    left: -5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+}
